@@ -1,0 +1,62 @@
+
+#include "Human.h"
+#include <iostream>
+using namespace std; 
+
+Plec stringToPlec(string plec) {
+  if(plec == "Kobieta") {
+    return Plec::Kobieta;
+  }
+  return Plec::Mezczyzna;
+}
+
+Human::Human(string imie, string nazwisko, string wlosy, string oczy, string plec, string preferowanaPlec, int wiek, vector<string> pasje, vector<string> preferencjePasji, string preferencjaWlosy, string preferencjaOczy) {
+  this->imie = imie, // wskaźnik this, który wskazuje na obiekt, dla którego została wywołana metod
+  this->nazwisko = nazwisko,
+  this->wlosy = wlosy,
+  this->oczy = oczy,
+  this->plec = stringToPlec(plec),
+  this->preferowanaPlec = stringToPlec(preferowanaPlec),
+  this->wiek = wiek,
+  this->pasje = pasje,
+  this->preferencjePasji = preferencjePasji,
+  this->preferencjaWlosy = preferencjaWlosy,
+  this->preferencjaOczy = preferencjaOczy;
+}
+
+
+void Human::dodajPasje(string nowaPasja) {
+  pasje.push_back(nowaPasja);
+}
+
+void Human::drukujPoszukiwacza() {
+  cout << "Imie: " << imie << endl
+            << "Nazwisko: " << nazwisko << endl
+            << "Plec: " << plecString() << endl
+            << "Wiek: " << wiek << endl
+            << "Wyglad: " << endl
+            << "wlosy: " << wlosy << endl
+            << "Oczy: " << oczy << endl
+            << "Pasje:" << endl;
+  for (auto it = pasje.begin(); it != pasje.end(); ++it) {
+    cout << "\t" << *it << endl;
+  }
+
+  cout << "Preferencje:" << endl
+            << "\t" << "Wlosy: " << preferencjaWlosy << endl
+            << "\t" << "Oczy: " << preferencjaOczy << endl
+            << "Szuka osob z pasjami:" << endl;
+  for (auto it = preferencjePasji.begin(); it != preferencjePasji.end(); ++it) {
+    cout << "\t" << *it << endl;
+  }
+};
+
+
+string Human::plecString() {
+  if(plec == Plec::Kobieta) {
+    return "Kobieta";
+  }
+  return "Mezczyzna";
+}
+
+
